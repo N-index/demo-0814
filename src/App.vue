@@ -1,31 +1,24 @@
 <template>
-  <nav>
-    <router-link to="/list">List</router-link>
-    <router-link to="/item">Item(画布组件)</router-link>
-  </nav>
-  <router-view/>
+  <button @click="onClick">switch</button>
+  <hr>
+  <DemoList v-if="foo === 'DemoList'" />
+  <DemoItem v-if="foo === 'DemoItem'" />
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    margin-left: 16px;
-
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+import DemoList from './views/DemoList.vue'
+import DemoItem from './views/DemoItem.vue'
+export default {
+  components:{DemoList,DemoItem},
+  data() {
+    return {
+      foo: 'DemoList'
+    }
+  },
+  methods: {
+    onClick() {
+      this.foo === 'DemoList' ? (this.foo = 'DemoItem') : (this.foo = 'DemoList');
     }
   }
 }
-</style>
+</script>
